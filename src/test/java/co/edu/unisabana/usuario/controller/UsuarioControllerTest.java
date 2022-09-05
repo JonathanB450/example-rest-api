@@ -13,6 +13,11 @@ import org.springframework.http.ResponseEntity;
 
 public class UsuarioControllerTest extends AbstractTest {
 
+  /* Given: Dado que (precondiciones)
+   * When: Que voy a hacer/probar
+   * Then: Cual deberia ser el resultado
+   */
+
   @Autowired
   private TestRestTemplate restTemplate;
 

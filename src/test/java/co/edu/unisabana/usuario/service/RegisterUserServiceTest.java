@@ -20,6 +20,33 @@ public class RegisterUserServiceTest {
   @Mock
   private RegisterUserPort registerUserPort;
 
+  @Test
+  public void Given_name_isEmpty_When_RegisterUser_then_throwException(){
+    User user = new User();
+    user.setName("");
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      service.registerUser(user);
+    });
+  }
+
+  @Test
+  public void Given_age_is_minor_18_When_RegisterUser_then_throwException(){
+    User user = new User();
+    user.setName("Jonathan");
+    user.setAge(16);
+    Assertions.assertThrows(RuntimeException.class, () -> {
+      service.registerUser(user);
+    });
+  }
+
+  @Test
+  public void Given_newUser_When_RegisterUser_Then_returnCreatedUser(){
+    User user = new User();
+    user.setName("Jonathan");
+    user.setAge(20);
+    boolean result = service.registerUser(user);
+    Mockito.verify(registerUserPort).addNewUser(user);
+  }
 
   @Test
   public void Give_dontSendCorrectIinformantion_When_Registeruser_Then_throwIllegalArgument() {

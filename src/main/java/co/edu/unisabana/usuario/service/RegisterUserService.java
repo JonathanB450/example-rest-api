@@ -17,6 +17,9 @@ public class RegisterUserService {
     if (user.getName() == null || user.getName().isEmpty()) {
       throw new IllegalArgumentException("The name cannot be empty");
     }
+    if(user.getAge() <  18){
+      throw new RuntimeException("The uses has not the minimun age");
+    }
     return registerUserPort.addNewUser(user);
 
   }
